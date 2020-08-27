@@ -1,0 +1,49 @@
+{
+  "name": "tunnel",
+  "version": "0.0.1",
+  "description": "A Simple way to manage your application state.",
+  "main": "src/index.ts",
+  "repository": "https://github.com/LFSCamargo/tunnel",
+  "author": "LFSCamargo",
+  "license": "MIT",
+  "scripts": {
+    "build:rollup": "rollup -c",
+    "prepublish": "yarn build:rollup"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1"
+  },
+  "dependencies": {
+    "ramda": "^0.27.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
+    "@types/jest": "^26.0.10",
+    "@types/node": "^14.6.0",
+    "@types/ramda": "^0.27.14",
+    "@types/react": "^16.9.46",
+    "@types/react-dom": "^16.9.8",
+    "commitlint": "^9.1.2",
+    "debug": "^4.1.1",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "jest": "^26.4.2",
+    "prettier": "^2.1.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.26.6",
+    "rollup-plugin-typescript2": "^0.27.2",
+    "ts-jest": "^26.2.0",
+    "typescript": "^4.0.2"
+  }
+}
