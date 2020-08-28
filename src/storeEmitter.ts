@@ -1,6 +1,6 @@
 export type Listener = (storeName: string, next: any) => void;
 
-export default () => {
+export const createStore = () => {
   const listeners: Listener[] = [];
   const initial: Record<string, any> = {};
 

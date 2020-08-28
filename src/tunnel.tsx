@@ -4,19 +4,17 @@ import React, {
   useState,
   useCallback,
   useEffect,
-  ReactNode,
   useMemo,
   useContext,
 } from 'react';
-import { usePrevious } from './helpers';
-import storeEmitter from './storeEmitter';
+import { createStore } from './storeEmitter';
 
 export type PrevState<T> = (prevState: T) => T;
 export type SubscribeFn<T> = (state: T) => any;
 
-const store = storeEmitter();
+const store = createStore();
 
-const Context = createContext<Record<string, any>>({});
+const Context = createContext(store.getInitial());
 
 interface Storage {
   getItem(key: string, ...args: Array<any>): any;
@@ -31,38 +29,35 @@ interface WebStorage extends Storage {
 }
 
 type Props = {
-  storage?: WebStorage;
+  storage?: WebStorage | Storage;
   persist?: boolean;
   storesToPersist?: string[];
-  chidren: ReactNode;
 };
 
 export const TunnelProvider: FC<Props> = (props) => {
   const { storage, persist, storesToPersist = [], children } = props;
   const [state, setState] = useState(store.getInitial());
-  const prevState = usePrevious(state);
 
-  // Handles updates to the context API
   const handleUpdate = useCallback(
     (storeName: string, next: any) => {
-      if (persist && storage && storesToPersist.includes(storeName)) {
-        storage.setItem(
-          `tunnel:${storeName}`,
-          JSON.stringify(
+      return setState((prevState) => {
+        if (persist && storage && storesToPersist.includes(storeName)) {
+          storage.setItem(
+            `tunnel:${storeName}`,
+            JSON.stringify(
+              typeof next === 'function' ? next(prevState[storeName]) : next,
+            ),
+          );
+        }
+        return {
+          [storeName]:
             typeof next === 'function' ? next(prevState[storeName]) : next,
-          ),
-        );
-      }
-      setState({
-        ...state,
-        [storeName]:
-          typeof next === 'function' ? next(prevState[storeName]) : next,
+        };
       });
     },
     [state, setState],
   );
 
-  // Hydrates Context API from the Storage
   const hydrateStore = useCallback(async () => {
     if (persist && storage) {
       await Promise.all(
@@ -74,7 +69,6 @@ export const TunnelProvider: FC<Props> = (props) => {
     }
   }, [storesToPersist]);
 
-  // Subscribe into tunnel updates
   useEffect(() => {
     store.subscribe(handleUpdate);
     return () => store.unsubscribe(handleUpdate);
@@ -86,16 +80,21 @@ export const TunnelProvider: FC<Props> = (props) => {
 
   return useMemo(
     () => <Context.Provider value={state}>{children}</Context.Provider>,
-    [props, state],
+    [state, children],
   );
+};
+
+TunnelProvider.defaultProps = {
+  storage: localStorage,
 };
 
 export function create<T extends any>(storeName: string, initial: T = {} as T) {
   store.setInitial(storeName, initial);
 
   return {
+    initialState: initial,
     enum: storeName,
-    update: (next: T) => store.emit(storeName, next),
+    update: (next: T | PrevState<T>) => store.emit(storeName, next),
     subscribe: (fn: SubscribeFn<T>): (() => void) => {
       const sub = (selectedId: string, next: any) => {
         if (selectedId === storeName) fn(next);
@@ -107,15 +106,12 @@ export function create<T extends any>(storeName: string, initial: T = {} as T) {
   };
 }
 
-// React hook to get the state from stores on tunnel
-export function useTunnelState(storeNames: string[]) {
+export function useTunnel<T extends any>(storeNames: string[]): T {
   const state = useContext(Context);
-
   return storeNames.reduce(
-    (prev, curr) => ({
-      ...prev,
+    (_prev, curr) => ({
       [curr]: state[curr],
     }),
-    {},
+    {} as any,
   );
 }
