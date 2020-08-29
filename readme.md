@@ -1,6 +1,6 @@
 # Tunnel
 
-<div style="display: flex; align-items: center; justify-content: center; background-color: rgb(242,242,242);">
+<div style="display: flex; width: 100%; align-items: center; justify-content: center; background-color: rgb(242,242,242);">
   <img src="https://i.imgur.com/PWyJDhN.png" width="300">
 </div>
 
