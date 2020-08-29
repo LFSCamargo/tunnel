@@ -2,6 +2,10 @@
 .yalc
 yalc.lock
 
+# Jest
+coverage/
+.jest/
+
 # OSX
 #
 .DS_Store
