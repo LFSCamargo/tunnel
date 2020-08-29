@@ -12,13 +12,21 @@ Tunnel is using a updated version of React Context and also adds Support to Reac
 
 # How to use tunnel
 
+## Install the package
+
+In order to install tunnel simply run the command bellow
+
+```sh
+yarn add @tunneljs/tunnel
+```
+
 ## Provider
 
 Place the `TunnelProvider` into the root of your application
 
 ```tsx
 import React from 'react';
-import { TunnelProvider } from 'tunnel';
+import { TunnelProvider } from '@tunneljs/tunnel';
 
 const App: React.FC = () => {
   return <TunnelProvider>...</TunnelProvider>;
@@ -33,7 +41,7 @@ Example:
 
 ```tsx
 import React from 'react';
-import { TunnelProvider } from 'tunnel';
+import { TunnelProvider } from '@tunneljs/tunnel';
 
 const App: React.FC = () => {
   return (
@@ -51,7 +59,7 @@ const App: React.FC = () => {
 ## Create your store
 
 ```tsx
-import { create } from 'tunnel';
+import { create } from '@tunneljs/tunnel';
 
 export interface IUserState {
   user: {
@@ -105,7 +113,7 @@ export const updateUserTest = () => {
 
 ```tsx
 import React from 'react';
-import { useTunnel } from 'tunnel';
+import { useTunnel } from '@tunneljs/tunnel';
 import { IUserState, updateUserTest } from './userStore';
 
 export const User: FC = () => {

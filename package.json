@@ -1,6 +1,6 @@
 {
-  "name": "tunnel",
-  "version": "0.0.1",
+  "name": "@tunneljs/tunnel",
+  "version": "1.0.0",
   "description": "A Simple way to manage your application state.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -50,7 +50,7 @@
     "jest": "^26.4.2",
     "jest-enzyme": "^7.1.2",
     "jest-localstorage-mock": "^2.4.3",
-    "prettier": "^2.1.0",
+    "prettier": "^2.1.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.26.6",
     "rollup-plugin-typescript2": "^0.27.2",
