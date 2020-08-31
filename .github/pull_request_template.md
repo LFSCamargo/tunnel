@@ -12,4 +12,5 @@
 
 ## Checklist 🚨
 
-- [ ] Added Tests?
+- [ ] Tested on Tunnel Playground (https://github.com/LFSCamargo/tunnel-playground)
+- [ ] Added Tests
