@@ -7,12 +7,12 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { createStore } from './storeEmitter';
+import { createListener } from './eventEmitter';
 
 export type PrevState<T> = (prevState: T) => T;
 export type SubscribeFn<T> = (state: T) => any;
 
-const store = createStore();
+const store = createListener();
 
 const Context = createContext(store.getInitial());
 
@@ -40,7 +40,7 @@ export const TunnelProvider: FC<Props> = (props) => {
 
   const handleUpdate = useCallback(
     (storeName: string, next: any) => {
-      return setState((prevState) => {
+      return setState((prevState: Record<string, any>) => {
         if (persist && storage && storesToPersist.includes(storeName)) {
           storage.setItem(
             `tunnel:${storeName}`,
@@ -70,8 +70,8 @@ export const TunnelProvider: FC<Props> = (props) => {
   }, [storesToPersist]);
 
   useEffect(() => {
-    store.subscribe(handleUpdate);
-    return () => store.unsubscribe(handleUpdate);
+    const unsubscribe = store.subscribe(handleUpdate);
+    return () => unsubscribe();
   }, [store]);
 
   useEffect(() => {
@@ -88,20 +88,27 @@ TunnelProvider.defaultProps = {
   storage: localStorage,
 };
 
-export function create<T extends any>(storeName: string, initial: T = {} as T) {
+type Store<T> = {
+  initialState: T,
+  enum: string;
+  update: (nextState: T | PrevState<T>) => void;
+  subscribe: (fn: SubscribeFn<T>) => (() => void);
+}
+
+export function create<T extends any>(storeName: string, initial: T = {} as T): Store<T> {
   store.setInitial(storeName, initial);
 
   return {
     initialState: initial,
     enum: storeName,
-    update: (next: T | PrevState<T>) => store.emit(storeName, next),
-    subscribe: (fn: SubscribeFn<T>): (() => void) => {
+    update: nextState => store.emit(storeName, nextState),
+    subscribe: fn => {
       const sub = (selectedId: string, next: any) => {
         if (selectedId === storeName) fn(next);
       };
 
-      store.subscribe(sub);
-      return () => store.unsubscribe(sub);
+      const unsub = store.subscribe(sub);
+      return () => unsub();
     },
   };
 }
