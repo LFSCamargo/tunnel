@@ -8,7 +8,7 @@
   "author": "LFSCamargo",
   "license": "MIT",
   "scripts": {
-    "build:rollup": "rollup -c",
+    "build:rollup": "rimraf /dist && rollup -c",
     "prepublish": "yarn build:rollup",
     "lint": "yarn build:rollup && eslint '*/**/*.{js,jsx,ts,tsx}' --fix"
   },
