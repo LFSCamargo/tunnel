@@ -1,6 +1,6 @@
 {
   "name": "@tunneljs/tunnel",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A Simple way to manage your application state.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,7 @@
   "author": "LFSCamargo",
   "license": "MIT",
   "scripts": {
-    "build:rollup": "rollup -c",
+    "build:rollup": "rimraf /dist && rollup -c",
     "prepublish": "yarn build:rollup",
     "lint": "yarn build:rollup && eslint '*/**/*.{js,jsx,ts,tsx}' --fix"
   },
@@ -16,6 +16,7 @@
     "react": "^16.13.1"
   },
   "dependencies": {
+    "fbemitter": "^2.1.1",
     "ramda": "^0.27.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
@@ -26,6 +27,7 @@
     "@types/debug": "^4.1.5",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/fbemitter": "^2.0.32",
     "@types/jest": "^26.0.10",
     "@types/node": "^14.6.0",
     "@types/ramda": "^0.27.14",
