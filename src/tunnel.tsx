@@ -16,17 +16,17 @@ const store = createListener();
 
 const Context = createContext(store.getInitial());
 
-interface Storage {
+type Storage = {
   getItem(key: string, ...args: Array<any>): any;
   setItem(key: string, value: any, ...args: Array<any>): any;
   removeItem(key: string, ...args: Array<any>): any;
-}
+};
 
-interface WebStorage extends Storage {
-  getItem(key: string): Promise<string | null>;
-  setItem(key: string, item: string): Promise<void>;
-  removeItem(key: string): Promise<void>;
-}
+type WebStorage = Storage & {
+  getItem(key: string, ...args: Array<any>): any;
+  setItem(key: string, value: any, ...args: Array<any>): any;
+  removeItem(key: string, ...args: Array<any>): any;
+};
 
 type Props = {
   storage?: WebStorage | Storage;
@@ -34,7 +34,7 @@ type Props = {
   storesToPersist?: string[];
 };
 
-export const TunnelProvider: FC<Props> = (props) => {
+export const TunnelProvider: FC<Props> = props => {
   const { storage, persist, storesToPersist = [], children } = props;
   const [state, setState] = useState(store.getInitial());
 
@@ -61,7 +61,7 @@ export const TunnelProvider: FC<Props> = (props) => {
   const hydrateStore = useCallback(async () => {
     if (persist && storage) {
       await Promise.all(
-        storesToPersist.map(async (name) => {
+        storesToPersist.map(async name => {
           const data = (await storage.getItem(`tunnel:${name}`)) || '{}';
           store.emit(name, JSON.parse(data));
         }),
@@ -89,13 +89,16 @@ TunnelProvider.defaultProps = {
 };
 
 type Store<T> = {
-  initialState: T,
+  initialState: T;
   enum: string;
   update: (nextState: T | PrevState<T>) => void;
-  subscribe: (fn: SubscribeFn<T>) => (() => void);
-}
+  subscribe: (fn: SubscribeFn<T>) => () => void;
+};
 
-export function create<T extends any>(storeName: string, initial: T = {} as T): Store<T> {
+export function create<T extends any>(
+  storeName: string,
+  initial: T = {} as T,
+): Store<T> {
   store.setInitial(storeName, initial);
 
   return {

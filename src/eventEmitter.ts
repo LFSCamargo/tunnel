@@ -5,7 +5,7 @@ export type Listener = (storeName: string, nextState: any) => void;
 type EventListener = {
   getInitial(): Record<string, any>;
   setInitial(storeName: string, nextState: any): void;
-  subscribe: (listener: Listener) => (() => void);
+  subscribe: (listener: Listener) => () => void;
   emit(storeName: string, nextState: any): void;
 };
 
@@ -19,9 +19,12 @@ export const createListener = (): EventListener => {
       initial[storeName] = nextState;
     },
     subscribe: listener => {
-      const storeWatcher = emitter.addListener('tunnel:state:change', (args: any[]) => {
-        listener(args[0], args[1]);
-      });
+      const storeWatcher = emitter.addListener(
+        'tunnel:state:change',
+        (args: any[]) => {
+          listener(args[0], args[1]);
+        },
+      );
 
       return () => storeWatcher.remove();
     },
