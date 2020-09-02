@@ -3,6 +3,10 @@
 Changelog for the @tunneljs/tunnel library
 `This will be improoved soon to use a commit based tool`
 
+# 1.1.3
+
+Fixes the hydration issues while persitance are enabled for one store and not for the other.
+
 # 1.1.1
 
 Fixes performance issues on the code, by memoizing the state on the provider
