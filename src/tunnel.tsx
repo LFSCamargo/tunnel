@@ -50,6 +50,7 @@ export const TunnelProvider: FC<Props> = props => {
           );
         }
         return {
+          ...prevState,
           [storeName]:
             typeof next === 'function' ? next(prevState[storeName]) : next,
         };
@@ -128,7 +129,8 @@ export function useTunnel<T extends any>(storeNames: string[]): T {
   if (!state) throw new Error('You cant use Tunnel outside of a provider');
 
   const reducedState = storeNames.reduce(
-    (_prev, curr) => ({
+    (prev, curr) => ({
+      ...prev,
       [curr]: state[curr],
     }),
     {} as any,
