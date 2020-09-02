@@ -62,7 +62,10 @@ export const TunnelProvider: FC<Props> = props => {
     if (persist && storage) {
       await Promise.all(
         storesToPersist.map(async name => {
-          const data = (await storage.getItem(`tunnel:${name}`)) || '{}';
+          const data = await storage.getItem(`tunnel:${name}`);
+          if (!data) {
+            return;
+          }
           store.emit(name, JSON.parse(data));
         }),
       );
@@ -78,9 +81,11 @@ export const TunnelProvider: FC<Props> = props => {
     hydrateStore();
   }, []);
 
+  const memoizedState = useMemo(() => state, [state]);
+
   return useMemo(
-    () => <Context.Provider value={state}>{children}</Context.Provider>,
-    [state, children],
+    () => <Context.Provider value={memoizedState}>{children}</Context.Provider>,
+    [memoizedState, children],
   );
 };
 
@@ -111,6 +116,7 @@ export function create<T extends any>(
       };
 
       const unsub = store.subscribe(sub);
+
       return () => unsub();
     },
   };
@@ -118,10 +124,15 @@ export function create<T extends any>(
 
 export function useTunnel<T extends any>(storeNames: string[]): T {
   const state = useContext(Context);
-  return storeNames.reduce(
+
+  if (!state) throw new Error('You cant use Tunnel outside of a provider');
+
+  const reducedState = storeNames.reduce(
     (_prev, curr) => ({
       [curr]: state[curr],
     }),
     {} as any,
   );
+
+  return useMemo(() => reducedState, [reducedState]);
 }
