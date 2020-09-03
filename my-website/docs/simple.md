@@ -5,13 +5,11 @@ title: Basic Usage
 
 ## Basic Usage
 
-Now i'll show you how to get started with TunnelJS with the Basic Stuff, without persistance and stuff
+How to get started with Tunnel with a basic example, without persistence
 
-So without any further ado let's get started
+## Create a store
 
-## Let's create a simple store
-
-Let's simply a store with a initial state with a user with a name property
+Add a store with an initial state with a user that has a name property
 
 ### Javascript
 
@@ -49,9 +47,9 @@ const initialState = {
 const userStore = create<IUserState>('User', initialState);
 ```
 
-## Adding Actions
+## Actions
 
-Let's add a simple action that changes the state user name from `Luke` to `Rey`
+Let's add a simple action that changes the user's name from `Luke` to `Rey`
 
 ```jsx
 // Paste after the user store definiton
@@ -66,7 +64,7 @@ export const updateUserTest = () => {
 
 ## Plugging into the component
 
-Let's create a component that uses the `userStore`
+Let's create a component that uses `userStore`
 
 ### Javascript
 
@@ -116,7 +114,7 @@ export default User;
 
 ## Wrapping the component
 
-Let's now wrap the component that we created on the last step into the tunnel provider!
+Now wrap the component that we created on the last step into the tunnel provider!
 
 ```jsx
 import React from 'react';
@@ -136,6 +134,6 @@ export default User;
 
 ## Conclusion
 
-Now if you followed all the steps, when you clicked the `Update User Name!` button the name should change from `Luke` to `Rey`
+If you followed all the steps, clicking the `Update User Name!` button should change the name from `Luke` to `Rey`
 
-So now lets go to the [Advanced Usage](advanced.md)
+[Advanced Usage](advanced.md)

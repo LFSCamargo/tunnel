@@ -5,7 +5,7 @@ title: Advanced Usage
 
 ## Advanced Usage
 
-So Let's continue on how to use the tunneljs now a little bit more advanced, so on the previous tutorial we showed how to change data on the user store.
+So Let's continue on how to use the Tunnel now a little bit more advanced, so on the previous tutorial we showed how to change data on the user store.
 
 So now let's add a new store and fetch characters from the star wars api and lets persist only the characters store, using the persitance and hydration feature.
 
