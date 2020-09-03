@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <img src="https://i.imgur.com/PojDgo6.png" width="200" />
-  <h1 align="center" style="color: #50b9ff; font-size: 40px; margin-bottom: -10px; font-weight: bold;">TunnelJS</p>
+  <h1 align="center" style="color: #50b9ff; font-size: 40px; margin-bottom: -10px; font-weight: bold;">TunnelJS</h1>
   <p align="center" style="font-size: 25px; font-weight: 200;">A simple and reliable way to manage the state of your application</p>
 </p>
 
