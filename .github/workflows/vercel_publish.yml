@@ -18,7 +18,7 @@ jobs:
         run: cd my-website && npm install && cd ..
       - uses: amondnet/vercel-action@v19
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          vercel-token: ${{ secrets.VERCEL_KEY }} # Required
           vercel-args: '--prod' #Optional
           vercel-org-id: ${{ secrets.VERCEL_ORG }} #Required
           vercel-project-id: ${{ secrets.VERCEL_PROJECT }} #Required
