@@ -3,6 +3,10 @@
 Changelog for the @tunneljs/tunnel library
 `This will be improoved soon to use a commit based tool`
 
+# 1.1.4
+
+Adds documentation website with docusaurus and improoves the readme
+
 # 1.1.3
 
 Fixes the hydration issues while persitance are enabled for one store and not for the other.
