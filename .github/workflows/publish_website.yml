@@ -19,4 +19,4 @@ jobs:
       - name: Install Docosaurus Deps
         run: cd my-website && npm install && cd ..
       - name: Publishes Docs Website
-        run: cd my-website && vercel --token ${{secrets.VERCEL_KEY}} --prod && cd ..
+        run: cd my-website && vercel --token="${{secrets.VERCEL_KEY}}" --prod && cd ."
