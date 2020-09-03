@@ -49,7 +49,7 @@ module.exports = {
               to: 'docs/',
             },
             {
-              label: 'How to use Persistance',
+              label: 'How to use Persistence',
               to: 'docs/advanced',
             },
           ],

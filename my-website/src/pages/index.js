@@ -26,10 +26,10 @@ const features = [
     ),
   },
   {
-    title: 'Persistance and Hydration Out of The Box',
+    title: 'Persistence and Hydration Out of The Box',
     description: (
       <>
-        Tunnel gives to you persistance out of the Box, just simply passing your
+        Tunnel gives to you Persistence out of the Box, just simply passing your
         storage variable through properties.
       </>
     ),
@@ -39,7 +39,7 @@ const features = [
     description: (
       <>
         It suports both platform because its based on the React Context API, and
-        also persistance works for both.
+        also Persistence works for both.
       </>
     ),
   },

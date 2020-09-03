@@ -3,15 +3,13 @@ id: advanced
 title: Advanced Usage
 ---
 
-## Advanced Usage
+On the previous tutorial we explained how to change data on the user store
 
-So Let's continue on how to use the Tunnel now a little bit more advanced, so on the previous tutorial we showed how to change data on the user store.
+Moving on to more complex topics now, let's add a new store and fetch characters from the star wars api and persist only the characters store, using the Persistence and Hydration features
 
-So now let's add a new store and fetch characters from the star wars api and lets persist only the characters store, using the persitance and hydration feature.
+## New store for characters
 
-## Let's create a new store for characters
-
-Let's create a store with the name as `Characters` and also add a initialState with a loading prop and a characters array
+Create a store named `Characters`. Add an `initialState` with a loading prop and a characters array.
 
 ### Javascript
 
@@ -44,9 +42,9 @@ const initialState = {
 const store = create<ICharactersState>('Characters', initialState);
 ```
 
-## Creating the action to get the characters
+## Action to get the characters
 
-Let's create a function that fetches the `https://swapi.dev/api/people` endpoint and get some characters to display on the screen and also let's modify the state to display a loading indicator
+Create a function that fetches the `https://swapi.dev/api/people` endpoint to get some characters to display on the screen. Also we'll modify the state to display a loading indicator
 
 ```jsx
 // Paste after the characters store definiton
@@ -73,11 +71,11 @@ export const getCharacters = async () => {
 };
 ```
 
-So if you see you can pass a object or a function inside the update function to get the previous state value from the store, and spreading the previous state to keep the old state and modifying only the loading property.
+We can pass an object or a function to the `store.update` method to get the previous state value from the store. Note that we also spread the previous state to keep the rest of the old state intact and modify only the loading property
 
 ## Plugging into the component
 
-Now let's connect our store to our `Users` component that we created on the last tutorial and display the characters on the screen
+Connect the store to the `Users` component that we created on the last tutorial to display the characters on the screen
 
 ### Javascript
 
@@ -149,9 +147,9 @@ const User: FC = () => {
 export default User;
 ```
 
-## Persistance and Hydration
+## Persistence and Hydration
 
-Now let's modify our root component to persist the Characters store only and keep the User store with the initialState values
+Modify the root component to persist the `Characters` store only, while keeping the `User` store with the `initialState` value
 
 ```jsx
 import React from 'react';
@@ -174,6 +172,6 @@ export default User;
 
 :::note
 
-To use on react native the Persistance and Hydration feature just use the `AsyncStorage` instead of `localStorage`
+To use the Persistence and Hydration feature on React Native use `AsyncStorage` instead of `localStorage`
 
 :::
