@@ -20,16 +20,16 @@ const features = [
     title: 'Easy to Use',
     description: (
       <>
-        It's a simple way to manage the state of your application, simply
-        getting, updating and subscribing to your store.
+        It's simple to manage the state of your application, by
+        getting, updating or subscribing to your store.
       </>
     ),
   },
   {
-    title: 'Persistance and Hydration Out of The Box',
+    title: 'Persistence and Hydration Out of The Box',
     description: (
       <>
-        Tunnel gives to you persistance out of the Box, just simply passing your
+        Tunnel gives to you Persistence out of the box, simply by passing your
         storage variable through properties.
       </>
     ),
@@ -38,8 +38,8 @@ const features = [
     title: 'Supports React and React Native',
     description: (
       <>
-        It suports both platform because its based on the React Context API, and
-        also persistance works for both.
+        It suports both platforms because it is based on the React Context API.
+        Persistence also works for both, using localStorage on the browser and asyncStorage on mobile.
       </>
     ),
   },
