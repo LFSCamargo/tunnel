@@ -1,0 +1,25 @@
+name: Vercel Publish
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    name: Publish to Docs to Vercel
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+          registry-url: 'https://registry.npmjs.org/'
+      - name: Install Docs Repo Dependencies
+        run: cd my-website && npm install && cd ..
+      - uses: amondnet/vercel-action@v19
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          vercel-args: '--prod' #Optional
+          vercel-org-id: ${{ secrets.VERCEL_ORG }} #Required
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT }} #Required
+          working-directory: ./my-website
