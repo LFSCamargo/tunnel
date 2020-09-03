@@ -17,14 +17,24 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['@typescript-eslint', 'react', 'jsx-a11y', 'sonarjs', 'promise', 'import'],
+  plugins: [
+    '@typescript-eslint',
+    'react',
+    'jsx-a11y',
+    'sonarjs',
+    'promise',
+    'import',
+  ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
     __DEV__: true,
   },
   rules: {
-    'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
+    'react/jsx-filename-extension': [
+      'error',
+      { extensions: ['.jsx', '.js', '.tsx'] },
+    ],
     'react/prop-types': 0,
     'react/display-name': 0,
     '@typescript-eslint/member-delimiter-style': 0,
