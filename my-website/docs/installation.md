@@ -5,23 +5,23 @@ sidebar_label: Installing
 slug: /
 ---
 
-## Installing Tunnel into your application
+In order to install tunnel you can use [yarn](https://classic.yarnpkg.com/en/docs/install#debian-stable) or [npm (included with NodeJs)](https://nodejs.org/en/).
 
-In order to install tunnel you can use yarn or npm to install into your javascript application
+Yarn
 
 ```sh
 yarn add @tunneljs/tunnel
 ```
 
-How to install using npm
+Npm
 
 ```sh
 npm i --save @tunneljs/tunnel
 ```
 
-## Placing the provider
+## Provider
 
-After installing you need to place the `TunnelProvider` to your application root React component
+After installing you need to add the `TunnelProvider` to your root React Component. Probably named `App.js`.
 
 ```jsx
 import React from 'react';
@@ -34,10 +34,10 @@ const App: React.FC = () => {
 
 :::note
 
-To use tunnel your components needs to be wrapped with tunnel provider
+For tunnel to work, your component needs to be a descendant of a tunnel provider, hence we recommend wrapping the root component.
 
 :::
 
 ## All Set!
 
-Now its all set to use tunnel let's see how to use it at [Basic Usage](simple.md)
+See Tunnel [Basic Usage](simple.md)
