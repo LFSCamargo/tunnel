@@ -3,15 +3,30 @@ id: usetunnel
 title: The Use Tunnel Hook
 ---
 
-You can write JSX and use React components within your Markdown thanks to [MDX](https://mdxjs.com/).
+The `useTunnel` its a hook that provides you the state for the stores that you want.
 
-export const Highlight = ({children, color}) => ( <span style={{
-      backgroundColor: color,
-      borderRadius: '2px',
-      color: '#fff',
-      padding: '0.2rem',
-    }}>{children}</span> );
+```tsx
+import React from 'react';
+import { useTunnel } from '@tunneljs/tunnel';
+import { IUserState } from './userStore';
 
-<Highlight color="#25c2a0">Docusaurus green</Highlight> and <Highlight color="#1877F2">Facebook blue</Highlight> are my favorite colors.
+const User: FC = () => {
+  const { User } = useTunnel<{ User: IUserState }>(['User']);
 
-I can write **Markdown** alongside my _JSX_!
+  return (
+    <div>
+      <p>{User.user.name}</p>
+    </div>
+  );
+};
+
+export default User;
+```
+
+## Parameters
+
+- `storeNames`: It's an array of stores that you want to consume
+
+## Return
+
+The return will be an object of stores that you requested.

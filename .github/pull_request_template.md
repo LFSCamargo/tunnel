@@ -9,6 +9,7 @@
 - [ ] New Feature (non-breaking change new functionality)
 - [ ] Bug fix (fixes a bug without any breaking changes)
 - [ ] Breaking change (fix or change that modify the functionality of a existing feature)
+- [ ] Docs (changes to documentation)
 
 ## Checklist 🚨
 
