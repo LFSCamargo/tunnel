@@ -1,132 +1,25 @@
-# Tunnel
+<br />
+<p align="center">
+  <img src="https://i.imgur.com/PojDgo6.png" width="200" />
+  <p align="center" style="color: #50b9ff; font-size: 40px; margin-bottom: -10px; font-weight: bold;">TunnelJS</p>
+  <p align="center" style="font-size: 25px; font-weight: 200;">A simple and reliable way to manage the state of your application</p>
+</p>
 
-<div style="display: flex; width: 100%; align-items: center; justify-content: center; background-color: rgb(242,242,242);">
-  <img src="https://i.imgur.com/PWyJDhN.png" width="300">
-</div>
+# What is Tunnel
 
-## What is Tunnel
-
-Tunnel is a React Context API abstraction that allows you to make persistance into `AsyncStorage` and `localStorage`, and also allows you to
+Tunnel is a simple and basic state manager that allows you to make persistance into `AsyncStorage` and `localStorage`, and also allows you to
 make a better structure in terms of code.
 
-I built Tunnel on top of a old library that i contributed.
+# Motivation
 
-# How to use tunnel
+I was looking at some libraries for state management, and they ware prettt
 
-## Install the package
+Forget about actions, connections, reducers and a lot of boilerplate to create and manage states. With reworm you can create and manage state as simple as on the image above.
 
-In order to install tunnel simply run the command bellow
+# Documentation
 
-```sh
-yarn add @tunneljs/tunnel
-```
+To see how to use and how to install please access http://tunneljs.vercel.app
 
-## Provider
+# How to Contribute?
 
-Place the `TunnelProvider` into the root of your application
-
-```tsx
-import React from 'react';
-import { TunnelProvider } from '@tunneljs/tunnel';
-
-const App: React.FC = () => {
-  return <TunnelProvider>...</TunnelProvider>;
-};
-```
-
-You can persist stores on `React` and on `React Native` by simply passing the `persist`, `storesToPersist` and `storage` to the Provider
-
-#### Obs: The storage option it's the localStorage by default for React Native just pass the AsyncStorage
-
-Example:
-
-```tsx
-import React from 'react';
-import { TunnelProvider } from '@tunneljs/tunnel';
-
-const App: React.FC = () => {
-  return (
-    <TunnelProvider
-      persist={true}
-      storesToPersist={['StoreName']}
-      storage={localStorage}
-    >
-      ...
-    </TunnelProvider>
-  );
-};
-```
-
-## Create your store
-
-```tsx
-import { create } from '@tunneljs/tunnel';
-
-export interface IUserState {
-  user: {
-    name: string;
-  };
-  loading: boolean;
-}
-
-const initialState = {
-  user: {
-    name: 'Change the user name',
-  },
-  loading: false,
-} as IUserState;
-
-const userStore = create<IUserState>('User', initialState);
-```
-
-## Creating Actions
-
-```tsx
-import { create } from 'tunnel';
-
-export interface IUserState {
-  user: {
-    name: string;
-  };
-}
-
-const initialState = {
-  user: {
-    name: 'Change the user name',
-  },
-} as IUserState;
-
-const userStore = create<IUserState>('User', initialState);
-
-export const updateUserTest = () => {
-  const user = {
-    name: 'Luiz Fernando',
-  };
-
-  userStore.update((previous): any => ({
-    ...previous,
-    user,
-  }));
-};
-```
-
-## Connecting
-
-```tsx
-import React from 'react';
-import { useTunnel } from '@tunneljs/tunnel';
-import { IUserState, updateUserTest } from './userStore';
-
-export const User: FC = () => {
-  const { User } = useTunnel<IUserState>(['User']);
-
-  return (
-    <div>
-      <p>{User.user.name}</p>
-      <button type="button" onClick={updateUserTest}>
-        Update User Name!
-      </button>
-    </div>
-  );
-};
-```
+Just take a fork of this repo and send us a pull request following the templates for PR's, also following the issues that we have or you can send a pull request fixing a issue that you are having on your projects
