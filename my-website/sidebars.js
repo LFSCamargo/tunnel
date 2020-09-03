@@ -10,6 +10,6 @@
 module.exports = {
   someSidebar: {
     ['Getting Started']: ['installation', 'simple', 'advanced'],
-    // Documentation: ['provider', 'create', 'usetunnel'],
+    ['Documentation']: ['provider', 'create', 'usetunnel'],
   },
 };
