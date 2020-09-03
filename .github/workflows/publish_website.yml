@@ -1,0 +1,22 @@
+name: Publish Docs
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    name: Publish to npm
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+          registry-url: 'https://registry.npmjs.org/'
+      - name: Install Vercel Globally
+        run: npm install -g vercel
+      - name: Install Docosaurus Deps
+        run: cd my-website && npm install && cd ..
+      - name: Publishes Docs Website
+        run: cd my-website && vercel --token ${{secrets.VERCEL_KEY}} --prod && cd ..
