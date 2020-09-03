@@ -12,7 +12,7 @@ module.exports = {
   tagline: 'A simple and reliable way to manage the state of your application',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'LFSCamargo', // Usually your GitHub org/user name.
   projectName: 'tunnel', // Usually your repo name.
@@ -50,7 +50,7 @@ module.exports = {
             },
             {
               label: 'How to use Persistance',
-              to: 'docs/doc2',
+              to: 'docs/advanced',
             },
           ],
         },

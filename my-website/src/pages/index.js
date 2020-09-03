@@ -35,15 +35,6 @@ const features = [
     ),
   },
   {
-    title: 'Keeps files organized',
-    description: (
-      <>
-        It's a way that you can keep your store files actions and all the stuff
-        better organized.
-      </>
-    ),
-  },
-  {
     title: 'Supports React and React Native',
     description: (
       <>

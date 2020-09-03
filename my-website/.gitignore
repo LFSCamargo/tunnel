@@ -21,3 +21,6 @@ yarn-error.log*
 
 # ESLint
 .eslintcache
+
+# Vercel
+.vercel/
