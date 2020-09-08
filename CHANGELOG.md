@@ -3,6 +3,10 @@
 Changelog for the @tunneljs/tunnel library
 `This will be improoved soon to use a commit based tool`
 
+# 1.1.5
+
+Fixes crash on react-native with localstorage as default value
+
 # 1.1.4
 
 Adds documentation website with docusaurus and improoves the readme
