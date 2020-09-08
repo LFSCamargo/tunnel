@@ -26,5 +26,5 @@ export default Root;
 ## Props
 
 - `persist`: A boolean to define if the persistance is enabled, default value is `false`
-- `storage`: The storage for the platform that you are using. For React Native `AsyncStorage` and for web `localStorage`. default value is `localStorage`
+- `storage`: The storage for the platform that you are using. For React Native `AsyncStorage` and for web `localStorage`.
 - `storesToPersist`: It's an array of store names that you want to persist, default value is a empty array

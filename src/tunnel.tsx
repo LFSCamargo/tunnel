@@ -90,10 +90,6 @@ export const TunnelProvider: FC<Props> = props => {
   );
 };
 
-TunnelProvider.defaultProps = {
-  storage: localStorage,
-};
-
 type Store<T> = {
   initialState: T;
   enum: string;
