@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { render, act, fireEvent } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { TunnelProvider, create, useTunnel } from '..';
 
 const promise = Promise.resolve();
