@@ -61,6 +61,8 @@ describe('Tunnel tests', () => {
     expect(getByTestId('stateValue', {}, { timeout: 1000 }).textContent).toBe(
       'value changed',
     );
+
+    wrapper.unmount();
   });
 
   it('should trigger a localstorage change when the state change happen', async () => {
@@ -159,5 +161,7 @@ describe('Tunnel tests', () => {
 
     expect(remountedByTestId('test_value').textContent).toBe('test');
     expect(localStorage.getItem).toBeCalled();
+
+    wrapper.unmount();
   });
 });
