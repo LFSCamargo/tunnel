@@ -4,7 +4,7 @@
     "target": "es6",
     "module": "es6",
     "lib": ["esnext", "DOM"],
-    "types": ["react", "jest"],
+    "types": ["react", "jest", "@testing-library/jest-dom"],
     "jsx": "react",
     "declaration": true,
     "declarationMap": true,
