@@ -10,6 +10,63 @@ describe('Tunnel tests', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should update the state with a function', async () => {
+    const state = {
+      loading: false,
+      username: 'luizinho',
+    };
+    const store = create('user', state);
+
+    const changeStoreValue = () => {
+      store.update(prev => {
+        return {
+          ...prev,
+          loading: true,
+        };
+      });
+
+      store.update(prev => {
+        return {
+          ...prev,
+          username: 'Luiz Fernando',
+          loading: true,
+        };
+      });
+    };
+
+    const App = () => {
+      const { user } = useTunnel<{ user: typeof state }>([store.enum]);
+      return (
+        <div>
+          <div data-testid="user_username">{user.username}</div>
+          <button data-testid="change_user_username" onClick={changeStoreValue}>
+            Change Username
+          </button>
+        </div>
+      );
+    };
+
+    const wrapper = render(
+      <TunnelProvider>
+        <App />
+      </TunnelProvider>,
+    );
+
+    const { getByTestId } = wrapper;
+
+    fireEvent(
+      getByTestId('change_user_username'),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+
+    await act(() => promise);
+
+    expect(getByTestId('user_username').textContent).toBe('Luiz Fernando');
+  });
+
   it('should subscribe to a state change', async () => {
     const store = create('testStore', 'value');
     const changeStoreValue = (value: string) => store.update(value);
@@ -64,7 +121,7 @@ describe('Tunnel tests', () => {
     wrapper.unmount();
   });
 
-  it('should trigger a localstorage change when the state change happen', async () => {
+  it('should trigger a state change', async () => {
     const store = create('user', 'luiz');
     const changeUsername = () => store.update('jest');
     const App = () => {

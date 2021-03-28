@@ -122,8 +122,6 @@ export function create<T extends any>(
 export function useTunnel<T extends any>(storeNames: string[]): T {
   const state = useContext(Context);
 
-  if (!state) throw new Error('You cant use Tunnel outside of a provider');
-
   const reducedState = storeNames.reduce(
     (prev, curr) => ({
       ...prev,
