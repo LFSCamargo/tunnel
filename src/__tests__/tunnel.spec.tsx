@@ -19,7 +19,6 @@ describe('Tunnel tests', () => {
 
       useEffect(() => {
         const unsubscribe = store.subscribe(setValue);
-        console.log('inscrito');
         return () => unsubscribe();
       }, [store]);
 
