@@ -85,3 +85,6 @@ buck-out/
 *.prefs
 .classpath
 .project
+
+# Nova Editor
+.nova/
