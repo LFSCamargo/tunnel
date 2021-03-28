@@ -68,6 +68,7 @@ describe('Tunnel tests', () => {
   });
 
   it('should subscribe to a state change', async () => {
+    const valueChanged = 'value changed';
     const store = create('testStore', 'value');
     const changeStoreValue = (value: string) => store.update(value);
     const App = () => {
@@ -82,7 +83,7 @@ describe('Tunnel tests', () => {
       return (
         <>
           <button
-            onClick={() => changeStoreValue('value changed')}
+            onClick={() => changeStoreValue(valueChanged)}
             data-testid="changeStoreValue"
           >
             Change Store Value
@@ -112,10 +113,10 @@ describe('Tunnel tests', () => {
     await act(() => promise);
 
     expect(getByTestId('storeValue', {}, { timeout: 1000 }).textContent).toBe(
-      'value changed',
+      valueChanged,
     );
     expect(getByTestId('stateValue', {}, { timeout: 1000 }).textContent).toBe(
-      'value changed',
+      valueChanged,
     );
 
     wrapper.unmount();
